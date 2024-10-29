@@ -22,4 +22,4 @@ This project focuses on the design and verification of a Multiply-Accumulate (MA
 To generate results and run the verification tests, use the provided Makefile. Execute the following command in your terminal:
 
 ```bash
-make run
+make 
