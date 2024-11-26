@@ -32,7 +32,7 @@ make
   - Verification: not completed
 - **Unpipelined Design**:
   - Code: completed
-  - Verification: not completed
+  - Verification: completed
 
 ### 2. bfloat16:
 - **Pipelined Design**:
