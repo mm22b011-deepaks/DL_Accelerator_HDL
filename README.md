@@ -23,3 +23,32 @@ To generate results and run the verification tests, use the provided Makefile. E
 
 ```bash
 make 
+
+## Assignment 1 Status
+
+### 1. int32:
+- **Pipelined Design**:
+  - Code: completed
+  - Verification: not completed
+- **Unpipelined Design**:
+  - Code: completed
+  - Verification: not completed
+
+### 2. bfloat16:
+- **Pipelined Design**:
+  - Code: completed
+  - Verification: not completed
+- **Unpipelined Design**:
+  - Code: completed
+  - Verification: not completed
+
+## Assignment 2 Status
+
+### 1. int32:
+- Code: completed
+- Verification: not completed
+
+### 2. bfloat16:
+- Code: completed
+- Verification: not completed
+
