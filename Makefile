@@ -1,6 +1,6 @@
 # Variables
 TOPFILE = unpipelined.bsv
-TOPMODULE = mkunpipelined
+TOPMODULE = mkTB_unpipelined
 BSVINCDIR = .:%/Libraries
 VERILOGDIR = verilog/
 BUILDDIR = intermediate/

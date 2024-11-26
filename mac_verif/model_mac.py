@@ -2,24 +2,22 @@ import cocotb
 from cocotb_coverage.coverage import *
 
 counter_coverage = coverage_section(
-    CoverPoint('top.get_A_x', vname='get_A_x', bins = list(range(0, 8))),
-    CoverPoint('top.get_B_y', vname='get_B_y', bins = list(range(0, 8))),
-    CoverPoint('top.get_C_z', vname='get_C_z', bins = list(range(0, 32))),
-    CoverPoint('top.s1_or_s2_tcs', vname='s1_or_s2_tcs', bins = list(range(0, 2))),
+    CoverPoint('top.put_a_in', vname='put_a_in', bins = list(range(0, 8))),
+    CoverPoint('top.put_b_in', vname='put_b_in', bins = list(range(0, 8))),
+    CoverPoint('top.put_c_in', vname='put_c_in', bins = list(range(0, 32))),
+    CoverPoint('top.put_s1_or_s2_in', vname='put_s1_or_s2_in', bins = list(range(0, 2))),
     
-    CoverPoint('top.EN_get_A', vname='EN_get_A', bins = list(range(0,2))),
-    CoverPoint('top.EN_get_B', vname='EN_get_B', bins = list(range(0,2))),
-    CoverPoint('top.EN_get_C', vname='EN_get_C', bins = list(range(0,2))),
-    CoverPoint('top.EN_s1_or_s2', vname='EN_s1_or_s2', bins = list(range(0,2))),
+    CoverPoint('top.EN_put', vname='EN_put', bins = list(range(0,2))),
+
     
-    CoverCross('top.cross_cover', items = ['top.get_A_x', 'top.get_B_y', 'top.get_C_z', 'top.s1_or_s2_tcs'])
+    CoverCross('top.cross_cover', items = ['top.put_a_in', 'top.put_b_in', 'top.put_c_in', 'top.put_s1_or_s2_in'])
 )
 @counter_coverage
-def model_mac(EN_get_A: int, EN_get_B: int, EN_get_C: int, EN_s1_or_s2: int, get_A_x: int, get_B_y: int, get_C_z: int, s1_or_s2_tcs: int) -> int:
-    if EN_get_A and EN_get_B and EN_get_C and EN_s1_or_s2:
+def model_mac(EN_put: int, put_a_in: int, put_b_in: int, put_c_in: int, put_s1_or_s2_in: int) -> int:
+    if EN_put and put_s1_or_s2_in:
         # Extract signed 8-bit values for a and b
-        a = get_A_x & 0xFF
-        b = get_B_y & 0xFF
+        a = put_a_in & 0xFF
+        b = put_b_in & 0xFF
 
         # Convert to signed integers if they are in 8-bit two's complement form
         if a & 0x80:
@@ -39,7 +37,7 @@ def model_mac(EN_get_A: int, EN_get_B: int, EN_get_C: int, EN_s1_or_s2: int, get
             product = -product
 
         # Add the signed value of c (32-bit input)
-        c = get_C_z & 0xFFFFFFFF
+        c = put_c_in & 0xFFFFFFFF
         if c & 0x80000000:
             c -= 0x100000000
 
@@ -52,10 +50,10 @@ def model_mac(EN_get_A: int, EN_get_B: int, EN_get_C: int, EN_s1_or_s2: int, get
         # Return result as a signed 32-bit integer (with leading 1's for negative values)
         return result
 
-    if EN_get_A and EN_get_B and EN_get_C and not EN_s1_or_s2:
+    if EN_put and not put_s1_or_s2_in:
         # Extract sign, exponent, and mantissa from a and b (16-bit inputs)
-        a = get_A_x & 0xFFFF
-        b = get_B_y & 0xFFFF
+        a = put_a_in & 0xFFFF
+        b = put_b_in & 0xFFFF
         
         sign_a = (a >> 15) & 0x1
         exp_a = (a >> 7) & 0xFF  # 8-bit exponent
@@ -93,7 +91,7 @@ def model_mac(EN_get_A: int, EN_get_B: int, EN_get_C: int, EN_s1_or_s2: int, get
         normalized_mantissa = (product_mantissa << 16)  
         
         # 32-bit floating point c input
-        c = get_C_z & 0xFFFFFFFF
+        c = put_c_in & 0xFFFFFFFF
         
         # Extract sign, exponent, and mantissa from c (32-bit input)
         sign_c = (c >> 31) & 0x1
