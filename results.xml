@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1732599958" />
-    <testcase name="test_mac" classname="test_mac" file="/home/shakti/DL_Accelerator_HDL/mac_verif/test_mac.py" lineno="57" time="4.597552537918091" sim_time_ns="76865000.001" ratio_time="16718677.898090268" />
+    <property name="random_seed" value="1732606856" />
+    <testcase name="test_mac" classname="test_mac_p" file="/home/shakti/workingdir/mac_verif/test_mac_p.py" lineno="57" time="4.576197385787964" sim_time_ns="76865000.001" ratio_time="16796696.80327061" />
   </testsuite>
 </testsuites>

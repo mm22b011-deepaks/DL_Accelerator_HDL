@@ -29,7 +29,7 @@ class Vtop__Syms : public VerilatedSyms {
     
     // SCOPE NAMES
     VerilatedScope __Vscope_TOP;
-    VerilatedScope __Vscope_mkUnpipelined;
+    VerilatedScope __Vscope_mkPipelined;
     
     // SCOPE HIERARCHY
     VerilatedHierarchy __Vhier;

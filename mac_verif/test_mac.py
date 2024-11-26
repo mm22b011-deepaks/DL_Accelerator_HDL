@@ -74,9 +74,9 @@ async def test_mac(dut):
     
     await RisingEdge(dut.CLK)
    
-    # Perform mac1 operation when s == 1
+    # Perform mac operation when s == 1
     if dut.put_s1_or_s2_in.value == 1:
-        dut._log.info('Performing mac1')
+        dut._log.info('Performing mac')
         for i in range(0,len(A_bin1)):
             dut.put_a_in.value = A_bin1[i]
             dut.put_b_in.value = B_bin1[i]
@@ -93,9 +93,9 @@ async def test_mac(dut):
             assert dut_result == MAC_bin1[i], f'Binary Mismatch: Cycle {i}, Expected {MAC_bin1[i]:032b}, Got {dut_result:032b}'
      
 
-    # Perform mac1 operation when s == 0   
+    # Perform mac operation when s == 0   
     else :
-        dut._log.info('Performing mac2')
+        dut._log.info('Performing mac')
         for i in range(0,len(A_bin2)):
             dut.put_a_in.value = A_bin2[i]
             dut.put_b_in.value = B_bin2[i]
@@ -132,9 +132,9 @@ async def test_mac(dut):
     await RisingEdge(dut.CLK)
     dut._log.info(f'S = {dut.put_s1_or_s2_in.value}')
     
-    # Perform mac1 operation when s == 1
+    # Perform mac operation when s == 1
     if dut.put_s1_or_s2_in.value == 1:
-        dut._log.info('Performing mac1')
+        dut._log.info('Performing mac')
         
         #walking 1 pattern coverage test
         dut._log.info('walking 1 pattern coverage test')
@@ -227,9 +227,9 @@ async def test_mac(dut):
             dut_result = int(dut.put.value)
             dut._log.info(f'Cycle {i}: DUT output = {dut_result:032b}, Expected = {int(mac_out):032b}')
             
-    # Perform mac1 operation when s == 0       
+    # Perform mac operation when s == 0       
     else:
-        dut._log.info('Performing mac2')
+        dut._log.info('Performing mac')
 
         for i in range(0, 1):
             en = int(dut.put.value)

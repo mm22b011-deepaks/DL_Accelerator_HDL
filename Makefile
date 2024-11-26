@@ -1,6 +1,8 @@
 # Variables
-TOPFILE = unpipelined.bsv
-TOPMODULE = mkTB_unpipelined
+TOPFILE = pipelined.bsv
+TOPMODULE = mkPipelined
+# TOPFILEP = pipelined.bsv
+# TOPMODULEP = mkPipelined
 BSVINCDIR = .:%/Libraries
 VERILOGDIR = verilog/
 BUILDDIR = intermediate/
@@ -15,11 +17,13 @@ default: clean_build generate_verilog sim_verilog
 generate_verilog:
 	@mkdir -p $(VERILOGDIR) $(BUILDDIR)
 	@bsc -u -verilog -vdir $(VERILOGDIR) -bdir $(BUILDDIR) +RTS -K4000M -RTS -p $(BSVINCDIR) $(TOPFILE)
-	@cd $(VERILOGDIR) && bsc -o a.out -e $(TOPMODULE) $(TOPMODULE).v
+	@cd $(VERILOGDIR) && bsc -o up.out -e $(TOPMODULE) $(TOPMODULE).v
+
+
 
 # Target to simulate Verilog output
 sim_verilog:
-	@cd $(VERILOGDIR) && ./a.out
+	@cd $(VERILOGDIR) && ./up.out 
 
 # Clean build artifacts
 clean_build:

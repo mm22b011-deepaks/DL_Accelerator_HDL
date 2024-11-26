@@ -3,11 +3,11 @@ top:
   coverage: 37
   size: 4148
   type: <class 'cocotb_coverage.coverage.CoverItem'>
-top.EN_put:
+top.EN_get_result:
   at_least: 1
   bins:_hits:
     0: 0
-    1: 256
+    1: 1561
   cover_percentage: 50.0
   coverage: 1
   size: 2
