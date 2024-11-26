@@ -23,7 +23,7 @@ To generate results and run the verification tests, use the provided Makefile. E
 
 ```bash
 make 
-
+```
 ## Assignment 1 Status
 
 ### 1. int32:
